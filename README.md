@@ -32,6 +32,7 @@ and management of containerized applications.
 
 ## 구성파일 작성후 특정 셋업, 툴을 이용하여 프로바이더에 전달
 <img width="1175" alt="스크린샷 2023-01-31 오후 7 05 56" src="https://user-images.githubusercontent.com/73451727/215730133-8fc9588b-6e41-4157-9e20-f814e819db82.png">
+
 ```
 쿠버네티스의 배경 아이디어
 -> "배포를 설명하는 표준화된 방식을 갖는 것"
@@ -40,7 +41,6 @@ and management of containerized applications.
 클라우드 프로바이더에 특화된 구성을 제거하거나,
 새로운 클라우드 프로바이더로 교체하기만 하면 되며,
 전체 구성 파일을 다시 작성할 필요가 없습니다.
-
 ```
 
 
