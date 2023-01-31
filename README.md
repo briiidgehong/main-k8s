@@ -14,6 +14,7 @@ and management of containerized applications.
 
 ## 쿠버네티스란?
 <img width="927" alt="스크린샷 2023-01-31 오후 7 00 00" src="https://user-images.githubusercontent.com/73451727/215728702-50dc1891-41ba-4f5e-8307-8eba01105842.png">
+
 ```
 (기본적으로 ECS와 비슷한 역할을 한다.)
 (클라우드 프로바이더와는 별개로)
