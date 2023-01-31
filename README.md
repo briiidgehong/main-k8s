@@ -15,6 +15,7 @@ and management of containerized applications.
 ## 쿠버네티스란?
 ```
 (기본적으로 ECS와 비슷한 역할을 한다.)
+(클라우드 프로바이더와는 별개로)
 배포하는 방식, 
 컨테이너 스케일링,
 컨테이너가 다운될 경우 모니터링하는 방법,
