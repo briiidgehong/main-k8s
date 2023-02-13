@@ -153,3 +153,32 @@ AWS가 필요한 모든 EC2 인스턴스,
 
 ```
 ![screenshot-www udemy com-2023 02 13-20_27_01](https://user-images.githubusercontent.com/73451727/218445911-1c8525ef-3b6a-43fc-bb41-8d78f54a926a.png)
+
+## kubernetes' work
+![screenshot-www udemy com-2023 02 13-20_47_52](https://user-images.githubusercontent.com/73451727/218450133-a87f00c1-6f2a-454f-8c13-3348a612740b.png)
+
+```
+쿠버네
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
