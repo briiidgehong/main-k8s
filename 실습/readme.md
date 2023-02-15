@@ -1,4 +1,6 @@
 ## 로컬 실습
+
+## kubectl / minikube 설치
 <img width="984" alt="스크린샷 2023-02-15 오후 6 49 11" src="https://user-images.githubusercontent.com/73451727/218992970-15c703e2-3305-495a-ad9c-54f769233ba3.png">
 
 ```
