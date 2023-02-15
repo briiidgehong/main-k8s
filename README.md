@@ -67,6 +67,7 @@ and management of containerized applications.
 ```
 
 ## 쿠버네티스 아키텍쳐
+![screenshot-www udemy com-2023 02 13-20_27_01](https://user-images.githubusercontent.com/73451727/218445911-1c8525ef-3b6a-43fc-bb41-8d78f54a926a.png)
 ```
 # POD
 쿠버네티스는 포드(Pod)라는 것에 의해 관리됨
@@ -152,7 +153,6 @@ AWS가 필요한 모든 EC2 인스턴스,
 이러한 포드에서 컨테이너를 실행합니다.
 
 ```
-![screenshot-www udemy com-2023 02 13-20_27_01](https://user-images.githubusercontent.com/73451727/218445911-1c8525ef-3b6a-43fc-bb41-8d78f54a926a.png)
 
 ## 쿠버네티스는 클러스터(EC2)를 생성하지 않는다.
 ![screenshot-www udemy com-2023 02 13-20_47_52](https://user-images.githubusercontent.com/73451727/218450133-a87f00c1-6f2a-454f-8c13-3348a612740b.png)
