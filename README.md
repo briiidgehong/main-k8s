@@ -207,7 +207,8 @@ Docker compose가 로컬에서 하는 것처럼
 ```
 
 ## 워커노드
-<img width="442" alt="스크린샷 2023-02-15 오후 6 01 00" src="https://user-images.githubusercontent.com/73451727/218981538-acabdc53-ca46-4312-9cee-6424c17f0c1c.png">
+<img width="890" alt="스크린샷 2023-02-15 오후 6 02 06" src="https://user-images.githubusercontent.com/73451727/218981806-5d35a7ca-ff1b-4434-9c1b-b3e00b77e8fd.png">
+
 ```
 이제 워커 노드를 자세히 살펴보겠습니다.
 
@@ -333,7 +334,9 @@ AWS는 이 쿠버네티스 정의를 제공할 수 있는 서비스가 있습니
 ```
 
 ## 마스터노드
-<img width="445" alt="스크린샷 2023-02-15 오후 6 00 14" src="https://user-images.githubusercontent.com/73451727/218981378-3c2e75ba-bfcf-4ed1-8793-2e43f0310106.png">
+<img width="696" alt="스크린샷 2023-02-15 오후 6 02 53" src="https://user-images.githubusercontent.com/73451727/218981966-29874c98-873e-4574-b277-d2a79339f3b6.png">
+
+
 ```
 워커 노드를 살펴봤으니, 마스터 노드를 살펴보도록 하죠.
 
