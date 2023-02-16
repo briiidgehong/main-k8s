@@ -121,6 +121,7 @@ kubectl expose deployment first-deployment --type=LoadBalancer --port=8080
 kubectl get services
 
 # 미니큐브 한정 external-ip 조회 (로컬용임 / 프로바이더 배포시에는 위의 명령어로 조회 가능)
+minikube service first-deployment
 |-----------|------------------|-------------|---------------------------|
 | NAMESPACE |       NAME       | TARGET PORT |            URL            |
 |-----------|------------------|-------------|---------------------------|
@@ -133,7 +134,6 @@ kubectl get services
 | default   | first-deployment |             | http://127.0.0.1:56177 |
 |-----------|------------------|-------------|------------------------|
 
-minicube service first-deployment
 
 
 ```
