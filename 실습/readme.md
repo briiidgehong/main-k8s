@@ -63,6 +63,8 @@ docker build -t kub-first-app .
 minikube status
 minikube start --driver=docker
 
+# kubectl이 바라보고 있는 클러스터 확인 ??? - 미니큐브이어야함
+
 # 새로운 객체 만들기
 kubectl create help
 
@@ -87,5 +89,7 @@ kubectl get pods
 NAME                                READY   STATUS    RESTARTS     AGE
 first-deployment-5d979c85f9-nhd22   1/1     Running   0            37s
 hello-minikube-7ddcbc9b8b-qxhjq     1/1     Running   3 (9h ago)   16d
+
+minikube dashboard - pods 올라간것 보기
 
 ```
