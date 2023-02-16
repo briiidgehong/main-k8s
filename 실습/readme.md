@@ -54,3 +54,38 @@ minikube dashboard
 - 팟을 직접 개발자가 생성하고 관리하지 않는다. deployment 객체에 원하는 설정과 상태를 정의할뿐
 
 ```
+
+## 실습 1 쿠버네티스에 node js app 올리기
+```
+# 이미지 파일 만들기
+docker build -t kub-first-app .
+
+minikube status
+minikube start --driver=docker
+
+# 새로운 객체 만들기
+kubectl create help
+
+# dockerhub에 이미지 올리기
+- dockerhub에서 리포지토리 생성: bridgehong/k8s-test-app
+- docker login (dockerhub 계정: bridgehong )
+- 기존 image에 리포지토리 tag 붙이기
+docker tag kub-first-app bridgehong/k8s-test-app
+docker images (image명 변경된것 확인)
+docker push bridgehong/k8s-test-app
+
+# --image: first-deployment에서 생성된 pod의 컨테이너에 사용할 이미지를 지정
+kubectl create deployment first-deployment --image=bridgehong/k8s-test-app
+deployment.apps/first-deployment created
+
+kubectl get deployments
+NAME               READY   UP-TO-DATE   AVAILABLE   AGE
+first-deployment   1/1     1            1           18s
+hello-minikube     1/1     1            1           16d
+
+kubectl get pods
+NAME                                READY   STATUS    RESTARTS     AGE
+first-deployment-5d979c85f9-nhd22   1/1     Running   0            37s
+hello-minikube-7ddcbc9b8b-qxhjq     1/1     Running   3 (9h ago)   16d
+
+```
