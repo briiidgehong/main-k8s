@@ -56,6 +56,9 @@ minikube dashboard
 ```
 
 ## 실습 1 쿠버네티스에 node js app 올리기
+<img width="838" alt="스크린샷 2023-02-16 오후 11 36 12" src="https://user-images.githubusercontent.com/73451727/219394405-f882067f-6afb-446b-9b0b-06a91f71f22c.png">
+<img width="843" alt="스크린샷 2023-02-16 오후 11 46 04" src="https://user-images.githubusercontent.com/73451727/219396935-68e6aabf-ca6f-4b62-a6f4-87c41c80c0a2.png">
+
 ```
 # 이미지 파일 만들기
 docker build -t kub-first-app .
@@ -77,6 +80,11 @@ docker images (image명 변경된것 확인)
 docker push bridgehong/k8s-test-app
 
 # --image: first-deployment에서 생성된 pod의 컨테이너에 사용할 이미지를 지정
+# 쿠버네티스 클러스터에 있는 마스터 노드(=컨트롤플레인) 으로 전송
+# 컨트롤 플레인은 워커 노드에 pod를 배포하는 일을 담당한다.
+# 현재 실행중인 pod를 분석하여 새로 생성된 pod에 가장 적합한 워커 노드를 찾는다.
+# 새로 생성된 이 pod은 워커 노드중 하나로 보내집니다.
+
 kubectl create deployment first-deployment --image=bridgehong/k8s-test-app
 deployment.apps/first-deployment created
 
@@ -91,5 +99,25 @@ first-deployment-5d979c85f9-nhd22   1/1     Running   0            37s
 hello-minikube-7ddcbc9b8b-qxhjq     1/1     Running   3 (9h ago)   16d
 
 minikube dashboard - pods 올라간것 보기
+
+# 서비스 객체
+# pod와 pod에서 실행되는 컨테이너에 접근하여면 service가 필요합니다.
+# pod을 클러스터와 외부에 노출시켜준다.
+# pod은 내부 ip 주소를 가지지만 너무 자주 바뀐다.(스케일링 / 리플레이스)
+# 서비스는 pod을 그룹화하고, 공유 IP 주소를 제공한다. (이 주소는 바뀌지 않는다.)
+# 이 공유 IP는 외부에서도 접근 가능하다. (= 즉 외부에서 pod에 접근 가능해진다.)
+
+# 서비스 생성
+# 서비스를 생성하여, deployment에 의해 생성된 pod를 노출합니다.
+# --type=ClusterIP / default, 기본적으로 클러스터 내부에서만 접근 가능
+# --type=NodePort / deployment가 실행 되고있는 워커 노드의 IP 주소를 통해 포트가 노출된다.
+# --type=LoadBalancer / 클러스터가 실행되는 인프라에 존재하는 로드밸런서를 활용
+# 클러스터가 실행되는 인프라(프로바이더) 가 로드밸런서를 지원해야 사용 가능
+# 로드밸런서는 이 서비스에 대한 고유 주소를 생성하고,
+# 들어오는 트래픽을 이 서비스의 일부인 모든 pod에 고르게 분산
+kubectl expose deployment first-deployment --type=LoadBalancer --port=8080
+
+get services
+
 
 ```
