@@ -134,6 +134,86 @@ minikube service first-deployment
 | default   | first-deployment |             | http://127.0.0.1:56177 |
 |-----------|------------------|-------------|------------------------|
 
+```
 
+# CONTAINER CRUSH TEST
+```
+minikube service first-deployment
+ kubectl get pods
+NAME                                READY   STATUS    RESTARTS      AGE
+first-deployment-5d979c85f9-nhd22   1/1     Running   1 (17h ago)   21h
+hello-minikube-7ddcbc9b8b-qxhjq     1/1     Running   4 (17h ago)   16d
+
+# CRUSH CONTAINER
+http://127.0.0.1:63591/error
+app.get('/error', (req, res) => {
+  process.exit(1);
+});
+
+ kubectl get pods
+NAME                                READY   STATUS    RESTARTS      AGE
+first-deployment-5d979c85f9-nhd22   0/1     Error     2 (58s ago)   21h
+hello-minikube-7ddcbc9b8b-qxhjq     1/1     Running   4 (17h ago)   16d
+
+# deployment에 정의된대로 다시 컨테이너가 재시작됨
+ kubectl get pods
+NAME                                READY   STATUS    RESTARTS      AGE
+first-deployment-5d979c85f9-nhd22   1/1     Running   3 (16s ago)   21h
+hello-minikube-7ddcbc9b8b-qxhjq     1/1     Running   4 (17h ago)   16d
+
+# pods을 스케일 아웃 하기
+kubectl scale deployment/first-app --replicas=3
+ kubectl get pods
+NAME                                READY   STATUS              RESTARTS        AGE
+first-deployment-5d979c85f9-85f5z   0/1     ContainerCreating   0               3s
+first-deployment-5d979c85f9-b8l6v   0/1     ContainerCreating   0               3s
+first-deployment-5d979c85f9-nhd22   1/1     Running             3 (4m14s ago)   21h
+hello-minikube-7ddcbc9b8b-qxhjq     1/1     Running             4 (17h ago)     16d
+
+# error/ 해도, 다시 새로고침하면 페이지에 연결 잘됨 / 다른 pod으로 골고루 로드밸런서가 트래픽 분산처리중이기 때문에
+
+```
+
+# 롤백 활용
+<img width="1026" alt="스크린샷 2023-02-17 오후 5 58 15" src="https://user-images.githubusercontent.com/73451727/219599467-f81e41e5-003e-42d1-a7f2-1038e5eb1a94.png">
+
+```
+# 코드 수정
+
+# image build / dockerhub push / tag: 2
+docker build -t bridgehong/k8s-test-app:2 .
+docker images
+docker push
+docker push bridgehong/k8s-test-app:2
+
+# deployment image update (k8s-test-app: 컨테이너 이름)
+# 다른 태그가 감지되면 쿠버네티스는 이미지를 새로 다운로드하고, 컨테이너를 재실행 시킨다.
+kubectl set image deployment/first-deployment k8s-test-app=bridgehong/k8s-test-app:2 
+deployment.apps/first-deployment image updated
+
+# kubectl rollout status 현재 deployment에 의해 어떤것들이 진행되고 있는지 -f 하게 실시간으로 출력해줌
+kubectl rollout status deployment/first-deployment 
+deployment "first-deployment" successfully rolled out
+
+
+# 가장 최근의 deployment 내리기
+kubectl rollout undo deployment/first-deployment
+
+# deploy revision 조회
+kubectl rollout history deployment/first-deployment
+deployment.apps/first-deployment 
+REVISION  CHANGE-CAUSE
+1         <none>
+2         <none>
+
+# 좀 더 상세하게 이미지와 태그 확인 가능
+kubectl rollout history deployment/first-deployment --revision=2
+
+# revision 1 으로 rollback
+kubectl rollout undo deployment/first-deployment --to-revision=1
+
+# 테스트용 리소스 제거
+kubectl delete service first-deployment
+kubectl delete deployment first-deployment
 
 ```
