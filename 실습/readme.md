@@ -277,7 +277,12 @@ minikube service backend
 | default   | backend |             | http://127.0.0.1:64119 |
 |-----------|---------|-------------|------------------------|
 
+# 파일 변경 후 재적용
+kubectl apply -f=./deployment.yaml  
+kubectl apply -f=./service.yaml  
 
+# 해당 파일에 의해 만들어진 리소스 삭제
+kubectl delete -f=deployment.yaml -f=service.yaml
 
 ```
 
