@@ -67,6 +67,66 @@ minikube status
 minikube start --driver=docker
 
 # kubectl이 바라보고 있는 클러스터 확인 ??? - 미니큐브이어야함
+kubectl config
+kubectl config set-cluster 
+Set a cluster entry in kubeconfig.
+
+ Specifying a name that already exists will merge new fields on top of existing values for those fields.
+
+Examples:
+  # Set only the server field on the e2e cluster entry without touching other values
+  kubectl config set-cluster e2e --server=https://1.2.3.4
+
+  # Embed certificate authority data for the e2e cluster entry
+  kubectl config set-cluster e2e --embed-certs --certificate-authority=~/.kube/e2e/kubernetes.ca.crt
+
+  # Disable cert checking for the e2e cluster entry
+  kubectl config set-cluster e2e --insecure-skip-tls-verify=true
+
+  # Set custom TLS server name to use for validation for the e2e cluster entry
+  kubectl config set-cluster e2e --tls-server-name=my-cluster-name
+
+  # Set proxy url for the e2e cluster entry
+  kubectl config set-cluster e2e --proxy-url=https://1.2.3.4
+
+
+kubectl cluster-info
+
+kubectl config view
+
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority: /Users/jyhong/.minikube/ca.crt
+    extensions:
+    - extension:
+        last-update: Fri, 17 Feb 2023 00:09:14 KST
+        provider: minikube.sigs.k8s.io
+        version: v1.29.0
+      name: cluster_info
+    server: https://127.0.0.1:56138
+  name: minikube
+contexts:
+- context:
+    cluster: minikube
+    extensions:
+    - extension:
+        last-update: Fri, 17 Feb 2023 00:09:14 KST
+        provider: minikube.sigs.k8s.io
+        version: v1.29.0
+      name: context_info
+    namespace: default
+    user: minikube
+  name: minikube
+current-context: minikube
+kind: Config
+preferences: {}
+users:
+- name: minikube
+  user:
+    client-certificate: /Users/jyhong/.minikube/profiles/minikube/client.crt
+    client-key: /Users/jyhong/.minikube/profiles/minikube/client.key
+
 
 # 새로운 객체 만들기
 kubectl create help
@@ -283,6 +343,15 @@ kubectl apply -f=./service.yaml
 
 # 해당 파일에 의해 만들어진 리소스 삭제
 kubectl delete -f=deployment.yaml -f=service.yaml
+
+# 하나의 파일로 사용 -> master-deployment.yaml
+# --- 로 객체를 구분
+# 순서는 위에서부터 아래순으로 실행됨
+
+```
+
+## LABEL / SELECTOR
+```
 
 ```
 
