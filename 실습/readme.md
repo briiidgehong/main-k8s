@@ -216,4 +216,109 @@ kubectl rollout undo deployment/first-deployment --to-revision=1
 kubectl delete service first-deployment
 kubectl delete deployment first-deployment
 
+
 ```
+
+# 명령적 접근방식 -> 선언적 접근방식
+<img width="861" alt="스크린샷 2023-02-17 오후 6 10 41" src="https://user-images.githubusercontent.com/73451727/219602453-eef2fdce-375a-48ef-9816-41c20b02734a.png">
+
+```
+"docker run을 계속 쳐야할때 -> docker-compose file로 정의되면 편하다"
+쿠버네티스에도 위와 비슷하게 클러스터 구성/배포 파일이 있음
+
+deployment.yaml
+  apiVersion: apps/v1
+  kind: Deployment
+  metadata: 
+    name: second-app-deployment
+  spec: 
+    replicas: 3
+    selector:
+      matchLabels:
+        app: second-app
+        tier: backend
+    template: 
+      metadata: 
+        labels:
+          app: second-app
+          tier: backend
+      spec:
+        containers:
+          - name: second-app-container
+            image: bridgehong/bridgehong/k8s-test-app:2
+          # - name: ...
+          #   image: ...
+
+kubectl apply -f=./deployment.yaml 
+deployment.apps/second-app-deployment created
+
+kubectl get deployments
+kubectl get pods
+
+kubectl apply -f=./service.yaml   
+service/backend created
+
+kubectl get services 
+NAME             TYPE           CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE
+backend          LoadBalancer   10.109.54.3      <pending>     80:30635/TCP     22s
+hello-minikube   NodePort       10.104.186.179   <none>        8080:31078/TCP   17d
+kubernetes       ClusterIP      10.96.0.1        <none>        443/TCP          17d
+
+minikube service backend 
+|-----------|---------|-------------|---------------------------|
+| NAMESPACE |  NAME   | TARGET PORT |            URL            |
+|-----------|---------|-------------|---------------------------|
+| default   | backend |          80 | http://192.168.49.2:30635 |
+|-----------|---------|-------------|---------------------------|
+🏃  backend 서비스의 터널을 시작하는 중
+|-----------|---------|-------------|------------------------|
+| NAMESPACE |  NAME   | TARGET PORT |          URL           |
+|-----------|---------|-------------|------------------------|
+| default   | backend |             | http://127.0.0.1:64119 |
+|-----------|---------|-------------|------------------------|
+
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
