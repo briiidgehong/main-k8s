@@ -352,6 +352,60 @@ kubectl delete -f=deployment.yaml -f=service.yaml
 
 ## LABEL / SELECTOR
 ```
+kind: Service
+spec:
+  # 서비스의 대상이 되는 pod 리소스를 가르킴
+  # selector 작동방식이 왜 deployment 객체의 selector와 다를까?
+  # apiversion이 다르기때문(=matchLabels는 더 최신버전에서만 지원함), 각 객체가 사용하는 버전이 다르다.
+  selector:
+    # tier가 frnotend이건 backend이건, app: second-app 레이블을 가진 모든 리소스에 연결됨
+    # 이 서비스 객체가 app:second-app 레이블이 있는 모든 pod을 연결해서 노출시킴
+    app: second-app
+    # tier: frontend? backend?
+
+kind: Deployment
+# 생성하는 객체의 이름을 정의
+metadata:
+  name: second-app-deployment
+# deployment 객체의 사양을 정의(=deployment 객체이므로, pod에 대한 정의)
+spec:
+  replicas: 2
+  # 이 deployment와 일치시키려는 pod 레이블의 키-벨류 를 지정 !!!
+  # 즉, template가 여러개일수 있고 이 deployment에 어떤 pod을 올릴건지 선택할 수 있음 !!!
+  selector:
+    matchLabels:
+      # tier: 계층 (보통 frontend / backend)
+      app: second-app
+      tier: backend
+      
+    # 보다 더 현대적인 selector option
+    # matchLabels와 달리, 레이블에 키 값 쌍이 여러 개 중첩되지 않으며,
+    # 대신 일치하는 객체를 갖기 위해 모두 충족되어야 하는 표현식의 목록을 가집니다.
+    # operator를 통해 더욱 유현하게 셀렉팅이 가능함
+    # In: values에 속하는 리소스를 선택 / NotIn: values에 속하는 리소스를 제외한 나머지 리소스를 선택 
+    # matchExpressions
+    #   - {key: app, operator: In, values: [second-app, third-app]}
+
+  # template: deployment객체의 일부로 생성해야 하는 pod을 정의
+  # kind가 필요없음 - template 자체가 pod을 정의하는 필드이기 때문에
+  template:
+    # pod은 쿠버네티스의 새로운 객체이므로, metadata 추가
+    metadata:
+      # 원하는 키-벨류 지정할 수 있다. (식별자 역할)
+      # 주어진 객체에 하나 이상의 레이블을 선언할수 있고,
+      # selector에서 키-쌍을 동일하게 입력해 해당 리소스를 연결한다.
+      labels:
+        app: second-app
+        tier: backend
+    # pod의 사양 정의
+    # deployment당 한 가지 유형의 pod이 존재
+    spec:
+      # 컨테이너 추가, 한 pod에 여러개의 컨테이너를 띄울 수 있음
+      containers:
+        - name: nodejs-app-container
+          image: academind/kub-first-app:2
+        # - name: ...
+        #   image: ...
 
 ```
 
