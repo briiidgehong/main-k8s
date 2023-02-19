@@ -409,7 +409,28 @@ spec:
 
 ```
 
+## Liveness Probes
+```
+쿠버네티스가 pod와 컨테이너가 정상인지 아닌지의 여부를 확인하는 방법 like health check
 
+spec:
+  # 컨테이너 추가, 한 pod에 여러개의 컨테이너를 띄울 수 있음
+  containers:
+    - name: nodejs-app-container
+      image:
+        academind/kub-first-app:2
+        # like health check
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 8080
+        # 10s
+        periodSeconds: 10
+        initialDelaySeconds: 5
+    # - name: ...
+    #   image: ...
+
+```
 
 
 
