@@ -1,37 +1,98 @@
+# 서비스 객체
+# pod와 pod에서 실행되는 컨테이너에 접근하여면 service가 필요합니다.
+# pod을 클러스터와 외부에 노출시켜준다.
+# pod은 내부 ip 주소를 가지지만 너무 자주 바뀐다.(스케일링 / 리플레이스)
+# 서비스는 pod을 그룹화하고, 공유 IP 주소를 제공한다. (이 주소는 바뀌지 않는다.)
+# 이 공유 IP는 외부에서도 접근 가능하다. (= 즉 외부에서 pod에 접근 가능해진다.)
+
+# 서비스 생성
+# 서비스를 생성하여, deployment에 의해 생성된 pod를 노출합니다.
+# --type=ClusterIP / default, 기본적으로 클러스터 내부에서만 접근 가능
+# --type=NodePort / deployment가 실행 되고있는 워커 노드의 IP 주소를 통해 포트가 노출된다.
+# --type=LoadBalancer / 클러스터가 실행되는 인프라에 존재하는 로드밸런서를 활용
+# 클러스터가 실행되는 인프라(프로바이더) 가 로드밸런서를 지원해야 사용 가능
+# 로드밸런서는 이 서비스에 대한 고유 주소를 생성하고,
+# 들어오는 트래픽을 이 서비스의 일부인 모든 pod에 고르게 분산
+# kubectl expose deployment first-deployment --type=LoadBalancer --port=8080
+# 서비스를 생성하고 프로바이더에 배포되면 external-ip 조회 가능
+
 apiVersion: v1
+# 생성하려는 쿠버네티스 객체의 종류를 정의
 kind: Service
 metadata:
+  # 백엔드에 대한 리소스를 밖으로 expose 하겠다.
   name: backend
 spec:
-  selector: 
+  # 서비스의 대상이 되는 pod 리소스를 가르킴
+  # selector 작동방식이 왜 deployment 객체의 selector와 다를까?
+  # apiversion이 다르기때문(=matchLabels는 더 최신버전에서만 지원함), 각 객체가 사용하는 버전이 다르다.
+  selector:
+    # tier가 frnotend이건 backend이건, app: second-app 레이블을 가진 모든 리소스에 연결됨
+    # 이 서비스 객체가 app:second-app 레이블이 있는 모든 pod을 연결해서 노출시킴
     app: second-app
+    # tier: frontend? backend?
   ports:
-    - protocol: 'TCP'
+    - protocol: "TCP"
+      # 외부에 노출되는 서비스 도메인의 포트
       port: 80
+      # 연결되는 컨테이너 내부의 포트
       targetPort: 8080
     # - protocol: 'TCP'
     #   port: 443
     #   targetPort: 443
+  # 미니큐브의 loadbalancer를 활용하여, 외부에서 연결할 수 있는 주소를 얻는다.
+  # 로드벨런서 접근을 통해 이 서비스와 서비스에서 노출되는 pod에 대한 접근을 허용합니다.
   type: LoadBalancer
 ---
+# Pods objects
+# - 쿠버네티스와 상호작용하는 가장 작은 단위
+# - 일반적으로 하나의 팟에 하나의 컨테이너를 가짐 (더 많은 컨테이너를 가질수 있다.)
+# - 모든 팟이 공유하는 볼륨을 가질수 있다.
+# - 로컬호스트를 사용하여 팟 내부의 컨테이너들끼리 커뮤니케이트 할수있다.
+# - 팟은 기본적으로 임시적이다.(볼륨과같은것으로 남길수는 있으나 데이터가 날아가는게 기본)
+# - 컨트롤러에 의해(= deployment 객체에 의해) 자동 배포가 관리된다.
+
+# deployment objects
+# - 팟을 컨트롤하고 관리한다.
+# - 원하는 설정을 하면 쿠버네티스가 설정과 동일하게 만들어준다. (팟의 갯수/컨테이너의 수 ''')
+# - 배포는 중지/삭제/롤백될수 있다.
+# - 설정된만큼 유동적으로 스케일이 가능하다.
+# - 여러개의 배포 설정을 생성할수 있다.
+# - 팟을 직접 개발자가 생성하고 관리하지 않는다. deployment 객체에 원하는 설정과 상태를 정의할뿐
+
 apiVersion: apps/v1
+# 생성하려는 쿠버네티스 객체의 종류를 정의
 kind: Deployment
+# 생성하는 객체의 이름을 정의
 metadata:
   name: second-app-deployment
+# deployment 객체의 사양을 정의(=deployment 객체이므로, pod에 대한 정의)
 spec:
-  replicas: 1
+  replicas: 2
+  # 이 deployment와 일치시키려는 pod 레이블의 키-벨류 를 지정 !!!
+  # 즉, template가 여러개일수 있고 이 deployment에 어떤 pod을 올릴건지 선택할 수 있음 !!!
   selector:
     matchLabels:
+      # tier: 계층 (보통 frontend / backend)
       app: second-app
       tier: backend
+  # template: deployment객체의 일부로 생성해야 하는 pod을 정의
+  # kind가 필요없음 - template 자체가 pod을 정의하는 필드이기 때문에
   template:
-    metadata: 
+    # pod은 쿠버네티스의 새로운 객체이므로, metadata 추가
+    metadata:
+      # 원하는 키-벨류 지정할 수 있다. (식별자 역할)
+      # 주어진 객체에 하나 이상의 레이블을 선언할수 있고,
+      # selector에서 키-쌍을 동일하게 입력해 해당 리소스를 연결한다.
       labels:
         app: second-app
         tier: backend
-    spec: 
+    # pod의 사양 정의
+    # deployment당 한 가지 유형의 pod이 존재
+    spec:
+      # 컨테이너 추가, 한 pod에 여러개의 컨테이너를 띄울 수 있음
       containers:
-        - name: second-node
+        - name: nodejs-app-container
           image: academind/kub-first-app:2
         # - name: ...
         #   image: ...
