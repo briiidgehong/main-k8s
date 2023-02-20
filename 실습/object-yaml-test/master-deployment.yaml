@@ -103,7 +103,7 @@ spec:
       containers:
         - name: nodejs-app-container
           image:
-            academind/kub-first-app:2
+            bridgehong/k8s-test-app:2
           # 태그가 변경되지 않더라도 항상 이미지 풀링한다.
           imagePullPolicy: Always
             # like health check
