@@ -432,6 +432,26 @@ spec:
 
 ```
 
+## 쿠버네티스 볼륨
+<img width="844" alt="스크린샷 2023-02-20 오후 6 13 56" src="https://user-images.githubusercontent.com/73451727/220065100-fbc92bb2
+<img width="865" alt="스크린샷 2023-02-20 오후 6 19 32" src="https://user-images.githubusercontent.com/73451727/220065130-b2d75ac2-6f6f-4e5c-aa4c-ca8b23581149.png">
+-dcc4-4b3e-862b-00b2812ecf8b.png">
+<img width="836" alt="스크린샷 2023-02-20 오후 6 23 02" src="https://user-images.githubusercontent.com/73451727/220065244-0cb21433-239c-4744-8041-eaddd63db09f.png">
+
+
+```
+컨테이너가 종료되거나, 컨테이너를 호스팅하는 pod가 제거되거나, 
+혹은 확장되거나, 혹은 노드 간에 이동되는 경우,
+컨테이너에서 생성된 모든 데이터가 유지되도록 보장할 수 있는 방법
+
+볼륨의 종류: volume(일반볼륨) / persistent volume(영구볼륨) / persistent volume claims(영구볼륨 클레임)
+
+볼륨은 쿠버네티스에 의해 시작되고 관리되는 pod의 일부이다. 
+-> pod의 라이프타임과 함께한다. -> 컨테이너를 삭제하고 재시작해도 살아있다. -> pod이 제거되면 볼륨도 함께 제거된다.
+
+
+```
+
 
 
 
