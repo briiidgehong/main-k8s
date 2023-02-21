@@ -532,6 +532,7 @@ AzureFile, AzureDisc와 같은 클라우드 스토리지를 사용하거나,
 
 ```
 <img width="816" alt="스크린샷 2023-02-21 오후 12 28 05" src="https://user-images.githubusercontent.com/73451727/220240122-8938b625-83b2-41f4-ba6c-cc5204be312c.png">
+<img width="802" alt="스크린샷 2023-02-21 오후 4 37 51" src="https://user-images.githubusercontent.com/73451727/220278966-8c2a2b22-7d25-4870-994c-ff74fd430b03.png">
 
 ## 영구볼륨의 사용
 ```
