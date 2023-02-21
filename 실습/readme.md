@@ -592,7 +592,6 @@ kubectl get pods
 ## 네트워크
 <img width="816" alt="스크린샷 2023-02-21 오후 7 53 31" src="https://user-images.githubusercontent.com/73451727/220325570-ea62ed82-92fb-415b-8779-b6edd5e1daa9.png">
 
-<img width="723" alt="스크린샷 2023-02-21 오후 7 41 10" src="https://user-images.githubusercontent.com/73451727/220323084-a79e7a6e-f68a-4ddb-8ebf-e7b1aa5a477c.png">
 ```
 1. service object
  - 쿠버네티스에서 네트워크를 다룰때에 쓰이는 객체
@@ -645,9 +644,23 @@ template:
    -name: auth
     image: academind/kub-demo-auth:latest
 
+```
+
+<img width="723" alt="스크린샷 2023-02-21 오후 7 41 10" src="https://user-images.githubusercontent.com/73451727/220323084-a79e7a6e-f68a-4ddb-8ebf-e7b1aa5a477c.png">
+<img width="1058" alt="스크린샷 2023-02-21 오후 8 51 02" src="https://user-images.githubusercontent.com/73451727/220337702-236b3dd3-25cd-469f-a45c-057b1637ac9b.png">
+<img width="1407" alt="스크린샷 2023-02-21 오후 8 52 04" src="https://user-images.githubusercontent.com/73451727/220337732-aeea9277-622c-4bfc-aa3f-3e74180ad526.png">
+
+```
 3. pod to pod network
+deployment 3개 각각 생성 -> pod 분리
+users-deployment.yaml
+auth-deployment.yaml
+tasks-deployment.yaml
 
-
+service 3개 각각 생성 -> 각각 접근범위를 제한 할수 있음
+users-service.yaml
+auth-service.yaml
+tasks-service.yaml
 
 ```
 
