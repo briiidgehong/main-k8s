@@ -590,13 +590,65 @@ kubectl get pods
 ```
 
 ## 네트워크
+<img width="816" alt="스크린샷 2023-02-21 오후 7 53 31" src="https://user-images.githubusercontent.com/73451727/220325570-ea62ed82-92fb-415b-8779-b6edd5e1daa9.png">
+
 <img width="723" alt="스크린샷 2023-02-21 오후 7 41 10" src="https://user-images.githubusercontent.com/73451727/220323084-a79e7a6e-f68a-4ddb-8ebf-e7b1aa5a477c.png">
 ```
-1. 서비스
+1. service object
+ - 쿠버네티스에서 네트워크를 다룰때에 쓰이는 객체
+
+minikube status
+minikube start
+kubectl get deployments
+kubectl get services
+
+cd users-api
+docker build -t bridgehong/kube-network-users .
+docker push bridgehong/kube-network-users
+
+kubernetes/users-deployment.yaml 생성
+ kind: Deployment
+ spec:
+  selector:
+   matchLabels:
+    app: users
+ template:
+  ''''''''''''
+kubectl apply -f=users-deployment.yaml
+
+kubernetes/users-service.yaml 생성
+ kind: Service
+ spec:
+  selector:
+   app: users # pod 자체를 선택 (컨테이너가 아님)
+  type: ClusterIP: default값, 클러스터 내부에서만 접근가능함 (외부접근 불가)
+        NodePort: 노드 IP 주소를 통해, 외부에서 접근 / 노드가 여러개 되었을때 쓰기 힘들어진다.
+        LoadBalancer: 로드발란서 IP 주소로 접근 / 외부에서 접근하기에 가장 효과적인 방식
+
+kubectl apply -f=users-service.yaml
+minikube service user-service -> url:port 로 접근 가능해짐
 
 2. pod internal network
+'http://${process.env.AUTH_ADDRESS}/hashed-password/'
+
+# 같은 pod에 배포!
+# 동일한 Pod에 있지만, 다른 컨테이너인 둘간의 통신을 위해 AUTH_ADDRESS 환경변수는 어떤것으로 설정해야 할까? -> localhost !
+users-deployment.yaml
+template:
+ spec:
+  containers:
+   -name: users
+    image: academind/kub-demo-users:latest
+    env:
+     - name: AUTH_ADDRESS
+       value: localhost
+   -name: auth
+    image: academind/kub-demo-auth:latest
 
 3. pod to pod network
+
+
+
 ```
 
 
