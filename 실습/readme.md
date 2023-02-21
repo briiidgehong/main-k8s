@@ -589,7 +589,15 @@ kubectl get pods
 
 ```
 
+## 네트워크
+<img width="723" alt="스크린샷 2023-02-21 오후 7 41 10" src="https://user-images.githubusercontent.com/73451727/220323084-a79e7a6e-f68a-4ddb-8ebf-e7b1aa5a477c.png">
+```
+1. 서비스
 
+2. pod internal network
+
+3. pod to pod network
+```
 
 
 
