@@ -559,6 +559,35 @@ Kubectl get deployments
 
 ```
 
+## 환경변수
+```
+# 방식 1
+코드에서 process.env.STORY_FOLDER를 사용하려면, 
+
+Deployment -> pod -> 컨테이너 구성에 env 추가
+env:
+ - name: STORY_FOLDER
+   value: 'story'
+
+# 방식 2
+environment.yaml file -> configMap 객체 생성
+
+kubectl apply -f=environment.yaml
+kubectl get configmap
+
+Deployment -> pod -> 컨테이너 구성에 env
+env:
+ valueFrom:
+  configMapKeyRef:
+   name: data-store-env
+   key: folder
+   
+kubectl apply -f=environment.yaml
+kubectl get deployments
+kubectl get pods
+
+
+```
 
 
 
