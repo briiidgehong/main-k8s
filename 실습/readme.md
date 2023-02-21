@@ -531,6 +531,7 @@ AzureFile, AzureDisc와 같은 클라우드 스토리지를 사용하거나,
 다른 곳, 예를 들어 특정 클라우드 스토리지 서비스에 있다는 겁니다.
 
 ```
+<img width="816" alt="스크린샷 2023-02-21 오후 12 28 05" src="https://user-images.githubusercontent.com/73451727/220240122-8938b625-83b2-41f4-ba6c-cc5204be312c.png">
 
 ## 영구볼륨의 사용
 ```
@@ -538,6 +539,22 @@ AzureFile, AzureDisc와 같은 클라우드 스토리지를 사용하거나,
 영구볼륨 클레임을 정의하고 (위에서 생성한 영구볼륨과 연결 / VolumeName) -> host-pvc.yaml
 해당 볼륨을 사용하려는 pod에서 클레임을 연결하면 된다. 
 
+쿠버네티스에는 SC(스토리지 클래스) 가 있음
+그리고, 디폴트 스토리지 클래스가 존재
+Kubectl get sc
+NAME                 PROVISIONER                RECLAIMPOLICY   VOLUMEBINDINGMODE   ALLOWVOLUMEEXPANSION   AGE
+standard (default)   k8s.io/minikube-hostpath   Delete          Immediate           false                  20d
+
+위의 디폴트 스토리지 클래스를 사용
+host-pv / host-pic file 에 storageClassName: standard 추가
+
+적용
+Kubectl apply -f=host.pv.yaml # 볼륨 생성
+Kubectl apply -f=host-pvc.yaml # 클레임 생성
+Kubectl apply -f=deployment.yaml # deployment 적용
+Kubectl get pv # 영구 볼륨 리스트 조회
+Kubectl get pic # 클레임 조회
+Kubectl get deployments
 
 ```
 
