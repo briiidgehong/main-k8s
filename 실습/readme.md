@@ -662,6 +662,8 @@ users-service.yaml
 auth-service.yaml
 tasks-service.yaml
 
+# 각각의 컨테이너가 다른 pod에 있을때에, 둘간의 통신을 위해 AUTH_ADDRESS 환경변수는 어떤것으로 설정해야 할까?
+
 ```
 
 
