@@ -658,11 +658,27 @@ auth-deployment.yaml
 tasks-deployment.yaml
 
 service 3개 각각 생성 -> 각각 접근범위를 제한 할수 있음
+서비스에서 제공하는 주소는 쉽게 바뀌지 않음
 users-service.yaml
 auth-service.yaml
 tasks-service.yaml
 
 # 각각의 컨테이너가 다른 pod에 있을때에, 둘간의 통신을 위해 AUTH_ADDRESS 환경변수는 어떤것으로 설정해야 할까?
+쿠버네티스에서 자동으로 생성해주는 내장 환경변수 사용 -> process.env.AUTH_SERVICE_SERVICE_HOST
+서비스네임: auth-service -> -를_로 / 소문자를 대문자로 -> AUTH_SERVICE
+
+# 이러한 서비스 IP대신, CoreDNS 사용가능
+- name: AUTH_ADDRESS
+  value: "auth-service.default"
+
+# 어떤 방식이 가장 좋은 방식인가?
+우선 디플로이먼트를 각각 만들어서, pod 분리하고 거기에 접근하는 서비스도 각각 만들고
+
+서비스에서 제공하는 IP 수동으로 value값으로 입력
+vs
+쿠버네티스의 자동 생성 환경 변수 사용
+vs
+자동으로 생성된 도메인 이름 사용
 
 ```
 
