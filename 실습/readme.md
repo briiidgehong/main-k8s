@@ -682,6 +682,41 @@ vs
 
 ```
 
+## 프론트엔드 쿠버네티스에 배포
+```
+frontend-deployment.yaml 생성
+
+프론트엔드는 public으로 노출되어야함
+
+frontend-service.yaml 생성 -> kubectl apply -f=frontend-service.yaml / minikube service frontend-service
+
+# 프론트엔드에 리버스프록시 사용
+우리자신에게 요청을 보낸다. ->
+
+일반적으로 요청이 서버에 도달하면 이 프론트엔드가 제공되지만,
+nginx의 설정을 이용해 특정 경로의 요청이 들어온경우, 요청을 다른 호스트 혹은 다른 도메인으로 리디렉션할 수도 있습니다.
+이것이 리버스 프록시라고 하는 개념입니다.
+
+conf 폴더의 nginx.conf 파일로 이동하여 활성화할 수 있는데요.
+
+'listen 80'과 'location /' 사이에 'location /api'를 추가합니다.
+
+요청이 '/api' 또는 '/api/'+ 로 들어오면 원하는 다른 도메인이나 호스트로 연결해줄수 있다.
+
+이 구성이 시작됩니다.
+
+location /api/ {
+ proxy_pass http://tasks-service.default;
+}
+
+/api 요청이 들어오면, 백단으로 요청이 들어감
++
+프론트엔드에서 요청할때에 http://tasks-service.default/tasks endpoint 요청을
+/api/tasks 요청으로 간단하게 정의 가능함
+
+백과 프론트 두개가 동시에 expose될때 쓰이는 주요한 기능임 ! -> 리버스 프록시
+
+```
 
 
 
