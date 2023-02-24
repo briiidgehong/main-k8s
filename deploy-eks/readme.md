@@ -31,7 +31,7 @@ AWS EKS를 사용하면, 쿠버네티스의 구문, 철학 및 접근 방식을 
 ![스크린샷 2023-02-22 오후 9 35 21](https://user-images.githubusercontent.com/73451727/220621360-8e13d417-b1f4-4563-b598-1278271a989e.png)
 ![스크린샷 2023-02-22 오후 9 35 28](https://user-images.githubusercontent.com/73451727/220621353-63efb7eb-c681-4680-a963-71d6325a2a8b.png)
 
-## VPC SETTING
+## VPC - SUBNET SETTING
 ### CIDR: 192.168.0.0/16 - 네트워크 비트가 16개 - network: 192.168 host 0.0 - 2의 16제곱 = 약 65536 개의 호스트 IP 설정 가능
 <img width="578" alt="스크린샷 2023-02-24 오후 6 46 31" src="https://user-images.githubusercontent.com/73451727/221146740-665d092f-4a99-4f96-b675-2d782f52e08c.png">
 <img width="674" alt="스크린샷 2023-02-24 오후 6 37 54" src="https://user-images.githubusercontent.com/73451727/221145905-7911a7b9-621d-4d64-b6b5-008785c559ff.png">
