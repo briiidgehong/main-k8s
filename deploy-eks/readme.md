@@ -32,12 +32,33 @@ AWS EKS를 사용하면, 쿠버네티스의 구문, 철학 및 접근 방식을 
 ![스크린샷 2023-02-22 오후 9 35 28](https://user-images.githubusercontent.com/73451727/220621353-63efb7eb-c681-4680-a963-71d6325a2a8b.png)
 
 ## VPC - SUBNET SETTING
-### CIDR: 192.168.0.0/16 - 네트워크 비트가 16개 - network: 192.168 host 0.0 - 2의 16제곱 = 약 65536 개의 호스트 IP 설정 가능
+### 1. CIDR: 192.168.0.0/16 - 네트워크 비트가 16개 - network: 192.168 host 0.0 - 2의 16제곱 = 약 65536 개의 호스트 IP 설정 가능
 <img width="578" alt="스크린샷 2023-02-24 오후 6 46 31" src="https://user-images.githubusercontent.com/73451727/221146740-665d092f-4a99-4f96-b675-2d782f52e08c.png">
 <img width="674" alt="스크린샷 2023-02-24 오후 6 37 54" src="https://user-images.githubusercontent.com/73451727/221145905-7911a7b9-621d-4d64-b6b5-008785c559ff.png">
 
-### SUBNET
+### 2. SUBNET
 #### PUBLIC SUBNET: 192.168.10.0/24 - 네트워크 비트가 24개 - host = 8bit - 2의 8제곱 약 256개의 호스트 IP 설정 가능
 #### PRIVATE SUBNET: 192.168.11.0/24 - 네트워크 비트가 24개 - host = 8bit - 2의 8제곱 약 256개의 호스트 IP 설정 가능
 <img width="656" alt="스크린샷 2023-02-24 오후 6 51 51" src="https://user-images.githubusercontent.com/73451727/221148538-957dbdfd-11f7-48c3-979b-1098401ae388.png">
 <img width="656" alt="스크린샷 2023-02-24 오후 6 52 40" src="https://user-images.githubusercontent.com/73451727/221148566-ba263b32-aebd-4ae4-a070-b2ecfaf497b9.png">
+
+## 3. ROUTING TABLE
+### kube-vpc-public-subnet-route
+### 1) 라우팅테이블 생성
+### 2) 명시적 서브넷 연결 (kube-vpc-public-subnet)
+### 3) IGW 생성 / IGW-VPC 연결
+### 4) 라우팅 편집 - 추가 0.0.0.0/0 IGW
+<img width="669" alt="스크린샷 2023-02-24 오후 7 01 47" src="https://user-images.githubusercontent.com/73451727/221150394-55e0dc2e-39d5-4303-90af-c37851593f3b.png">
+
+<img width="669" alt="스크린샷 2023-02-24 오후 7 07 03" src="https://user-images.githubusercontent.com/73451727/221151986-a12078a4-ebdf-4d61-83a5-48740be52a5b.png">
+<img width="661" alt="스크린샷 2023-02-24 오후 7 08 45" src="https://user-images.githubusercontent.com/73451727/221152010-7fe80fbc-7ad5-4e26-9a81-e0b3329d2913.png">
+##
+<img width="1751" alt="스크린샷 2023-02-24 오후 7 10 47" src="https://user-images.githubusercontent.com/73451727/221152192-ee270c5a-80db-40ea-929f-83fa3954556f.png">
+
+### kube-vpc-private-subnet-route
+### 라우팅테이블 생성
+### 서브넷 연결 ecs-test-private-subnet-01
+<img width="663" alt="스크린샷 2023-02-24 오후 7 02 13" src="https://user-images.githubusercontent.com/73451727/221150411-57eca9ef-2abc-46a7-9e59-012f19a2ea83.png">
+
+
+
