@@ -43,13 +43,13 @@ AWS EKS를 사용하면, 쿠버네티스의 구문, 철학 및 접근 방식을 
 * prod-kube-vpc-public-subnet: 192.168.21.0/24
 
 ### 3. ROUTING TABLE
-* 1) IGW 생성: kube-IGW - 위에 생성해놓은 VPC에 연결
-* 2) NGW 생성 
+* ##### 1) IGW 생성: kube-IGW - 위에 생성해놓은 VPC에 연결
+* ##### 2) NGW 생성 
    * dev-kube-NGW - !!!public subnet 연결!!! dev-kube-vpc-public-subnet 
    * prod-kube-NGW - !!!public subnet 연결!!! prod-kube-vpc-public-subnet 
    * NGW란, private subnet 외부에서 내부로의 접근은 차단, 내부에서 외부의 접근은 허용
    * 예를 들어 MySQL를 설치파일을 다운로드하는 것이 가능해진다.
-* 3) ROUTING TABLE 생성
+* ##### 3) ROUTING TABLE 생성
    * dev-kube-vpc-private-subnet-route 생성 
       * 서브넷연결: dev-kube-vpc-private-subnet
       * 라우팅추가: 0.0.0.0/0 - dev-NGW
