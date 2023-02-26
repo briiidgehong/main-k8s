@@ -58,4 +58,10 @@ AWS EKS를 사용하면, 쿠버네티스의 구문, 철학 및 접근 방식을 
 ##### --- --- --- 서브넷연결: dev-kube-vpc-public-subnet / prod-kube-vpc-public-subnet
 ##### --- --- --- 라우팅추가: 0.0.0.0/0 - IGW
 
+<img width="728" alt="스크린샷 2023-02-26 오전 11 26 45" src="https://user-images.githubusercontent.com/73451727/221390910-d4173d78-fdf4-4d6a-adf8-74ad5376707a.png">
+<img width="734" alt="스크린샷 2023-02-26 오후 12 11 34" src="https://user-images.githubusercontent.com/73451727/221390915-297dca8b-bb1b-4748-80fc-d3ad8b7f6206.png">
+<img width="906" alt="스크린샷 2023-02-26 오후 12 11 18" src="https://user-images.githubusercontent.com/73451727/221390922-b4d21f3b-c4ed-4d6b-9a0d-4f2cecda6988.png">
+<img width="1098" alt="스크린샷 2023-02-26 오후 12 36 11" src="https://user-images.githubusercontent.com/73451727/221390957-50d2e1d3-8ff1-4bc5-a79f-a803402485dd.png">
+
+
 
