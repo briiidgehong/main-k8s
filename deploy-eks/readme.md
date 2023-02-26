@@ -59,10 +59,9 @@ AWS EKS를 사용하면, 쿠버네티스의 구문, 철학 및 접근 방식을 
 ### - kube-vpc-private-subnet-route
 ### 1) 라우팅테이블 생성
 ### 2) 명시적 서브넷 연결 (kube-vpc-private-subnet)
-
-<br/>
-
 ### ----- NGW 연결은 선택사항이나, 보통 PRIVATE SUBNET과 한 세트로 가져감
+### ----- + 개발환경을 추가로 구성할 경우 dev-private-NGW1 / prod-private-NGW2 / dev/prod-public-IGW 형식으로
+### -----   private subnet 하나당 NGW 하나씩 세팅한다.
 ### ----- NGW란, private subnet 외부에서 내부로의 접근은 차단, 내부에서 외부의 접근은 허용한다.
 ### ----- 예를 들어 MySQL를 설치파일을 다운로드하는 것이 가능해진다.
 ### 3) NGW 생성 / NGW-SUBNET 연결
