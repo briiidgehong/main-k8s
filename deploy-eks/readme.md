@@ -32,31 +32,33 @@ AWS EKS를 사용하면, 쿠버네티스의 구문, 철학 및 접근 방식을 
 ![스크린샷 2023-02-22 오후 9 35 28](https://user-images.githubusercontent.com/73451727/220621353-63efb7eb-c681-4680-a963-71d6325a2a8b.png)
 
 ## VPC - SUBNET SETTING
-### 1. VPC CIDR: 192.168.0.0/16 - 네트워크 비트가 앞에서부터 16개 
-##### --- network: 192.168 host 0.0 - 2의 16제곱 = 약 65536 개의 호스트 IP 설정 가능
+### 1. VPC 
+* CIDR: 192.168.0.0/16 - 네트워크 비트가 앞에서부터 16개 
+* network: 192.168 host 0.0 - 2의 16제곱 = 약 65536 개의 호스트 IP 설정 가능
 
 ### 2. SUBNET
-##### --- dev-kube-vpc-private-subnet: 192.168.10.0/24 - 네트워크 비트가 24개 - host = 8bit - 2의 8제곱 약 256개의 호스트 IP 설정 가능
-##### --- dev-kube-vpc-public-subnet: 192.168.11.0/24 
-##### --- prod-kube-vpc-private-subnet: 192.168.20.0/24
-##### --- prod-kube-vpc-public-subnet: 192.168.21.0/24
+* dev-kube-vpc-private-subnet: 192.168.10.0/24 - 네트워크 비트가 24개 - host = 8bit - 2의 8제곱 약 256개의 호스트 IP 설정 가능
+* dev-kube-vpc-public-subnet: 192.168.11.0/24 
+* prod-kube-vpc-private-subnet: 192.168.20.0/24
+* prod-kube-vpc-public-subnet: 192.168.21.0/24
 
 ### 3. ROUTING TABLE
-##### --- 1) IGW 생성: kube-IGW - 위에 생성해놓은 VPC에 연결
-##### --- 2) NGW 생성 - dev-kube-NGW - !!!public subnet 연결!!! dev-kube-vpc-public-subnet 
-##### --- ---        - prod-kube-NGW - !!!public subnet 연결!!! prod-kube-vpc-public-subnet 
-##### --- --- NGW란, private subnet 외부에서 내부로의 접근은 차단, 내부에서 외부의 접근은 허용
-##### --- --- 예를 들어 MySQL를 설치파일을 다운로드하는 것이 가능해진다.
-##### --- 3) ROUTING TABLE 생성
-##### --- --- dev-kube-vpc-private-subnet-route 생성 
-##### --- --- --- 서브넷연결: dev-kube-vpc-private-subnet
-##### --- --- --- 라우팅추가: 0.0.0.0/0 - dev-NGW
-##### --- --- prod-kube-vpc-private-subnet-route 생성 
-##### --- --- --- 서브넷연결: prod-kube-vpc-private-subnet
-##### --- --- --- 라우팅추가: 0.0.0.0/0 - prod-NGW
-##### --- --- kube-vpc-public-subnet-route 생성 
-##### --- --- --- 서브넷연결: dev-kube-vpc-public-subnet / prod-kube-vpc-public-subnet
-##### --- --- --- 라우팅추가: 0.0.0.0/0 - IGW
+* 1) IGW 생성: kube-IGW - 위에 생성해놓은 VPC에 연결
+* 2) NGW 생성 
+   * dev-kube-NGW - !!!public subnet 연결!!! dev-kube-vpc-public-subnet 
+   * prod-kube-NGW - !!!public subnet 연결!!! prod-kube-vpc-public-subnet 
+   * NGW란, private subnet 외부에서 내부로의 접근은 차단, 내부에서 외부의 접근은 허용
+   * 예를 들어 MySQL를 설치파일을 다운로드하는 것이 가능해진다.
+* 3) ROUTING TABLE 생성
+   * dev-kube-vpc-private-subnet-route 생성 
+      * 서브넷연결: dev-kube-vpc-private-subnet
+      * 라우팅추가: 0.0.0.0/0 - dev-NGW
+   * prod-kube-vpc-private-subnet-route 생성 
+      * 서브넷연결: prod-kube-vpc-private-subnet
+      * 라우팅추가: 0.0.0.0/0 - prod-NGW
+   * kube-vpc-public-subnet-route 생성 
+      * 서브넷연결: dev-kube-vpc-public-subnet / prod-kube-vpc-public-subnet
+      * 라우팅추가: 0.0.0.0/0 - IGW
 
 <img width="728" alt="스크린샷 2023-02-26 오전 11 26 45" src="https://user-images.githubusercontent.com/73451727/221390910-d4173d78-fdf4-4d6a-adf8-74ad5376707a.png">
 <img width="734" alt="스크린샷 2023-02-26 오후 12 11 34" src="https://user-images.githubusercontent.com/73451727/221390915-297dca8b-bb1b-4748-80fc-d3ad8b7f6206.png">
