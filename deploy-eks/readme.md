@@ -77,6 +77,8 @@
 >   * kube-vpc-az2-prod-private-subnet
 >   * kube-vpc-az2-prod-public-subnet
 > * 클러스터 엔드포인트 엑세스 - 퍼블릭 및 프라이빗
+>   * 외부에서 접근할 수 있는 특정 엔트포인트를 생성
+>   * 노드to노드 / pod to pod 간의 트레픽은 클러스터 내부에서 돌림
 > <img width="551" alt="스크린샷 2023-02-27 오후 6 32 25" src="https://user-images.githubusercontent.com/73451727/221526881-eb253785-3b74-402d-aae1-e49da56763f0.png">
 > <img width="552" alt="스크린샷 2023-02-27 오후 6 33 12" src="https://user-images.githubusercontent.com/73451727/221526895-1e663162-a990-487b-b9f2-e3869838cacb.png">
 
