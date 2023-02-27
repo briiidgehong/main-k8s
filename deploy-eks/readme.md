@@ -13,8 +13,7 @@ Added new context arn:aws:eks:ap-northeast-1:744721539376:cluster/kube-cluster t
 kubectl get pods
 + vscode extension에서도 클러스터 엔드포인트 스위칭 편하게 가능
 + eks version과 kubectl version 호환이 안될경우 kubectl downgrade 필요함
-+ brew uninstall kubectl
-+ brew search kubectl@
+
 
 
 ```
