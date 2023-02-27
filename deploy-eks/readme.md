@@ -107,8 +107,29 @@ kubectl get pods
 
 ## 3. EKS 에 노드 추가
 > ##### (=쿠버네티스 소프트웨어가 설치된 리모트 머신 추가)
-> 
+> * 1) 워커노드 추가
+>   * 클러스터 -> 컴퓨텅 -> 노드그룹 추가
+>     * IAM role 생성 및 mapping - EKSNodeGroup
+>       * IAM -> aws service -> ec2
+>         * AmazonEKSWorkerNodePolicy 추가
+>         * AmazonEKS_CNI_Policy 추가
+>         * AmazonEC2ContainerRegistryReadOnly 추가
+<img width="642" alt="스크린샷 2023-02-27 오후 8 24 02" src="https://user-images.githubusercontent.com/73451727/221551662-cd4a0e4c-1fe8-408b-84fc-65bd19f72b64.png">
+<img width="586" alt="스크린샷 2023-02-27 오후 8 22 24" src="https://user-images.githubusercontent.com/73451727/221551685-40a5778f-ff6a-4daa-b8ac-a76a741b410f.png">
+<img width="646" alt="스크린샷 2023-02-27 오후 8 27 43" src="https://user-images.githubusercontent.com/73451727/221552357-bcd3e1d9-0e71-4488-bb0d-9539a97fa69f.png">
+<img width="644" alt="스크린샷 2023-02-27 오후 8 28 02" src="https://user-images.githubusercontent.com/73451727/221552374-905f6a37-aee6-46c1-8dec-0ac67d26a033.png">
 
+
+
+
+
+
+
+> ##### 1) kubectl endpoint aws eks-cluster로 변경
+> ```
+> aws eks --region ap-northeast-1 update-kubeconfig --name kube-cluster
+> ```
+> 
 
 
 
