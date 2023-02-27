@@ -65,9 +65,20 @@
 
 > ### 1) 클러스터 구성
 > <img width="555" alt="스크린샷 2023-02-27 오후 6 24 22" src="https://user-images.githubusercontent.com/73451727/221524828-c2e4fb98-2bc5-4222-91a8-2c6fccad8d3c.png">
-> ##### EKSClusterRole 생성
+
+> ##### EKSClusterRole 생성 -> 클러스터 서비스 역할에서 선택하여 사용
 > ##### IAM -> 역할 -> 역할만들기 -> AWS 서비스 -> EKS -> EKS-cluster 선택 / 생성
-> 
+<br/>
+
+> ### 2) 네트워크 구성
+> * 서브넷 구성 (최소 두개의 AZ)
+>   * kube-vpc-az1-prod-private-subnet
+>   * kube-vpc-az1-prod-public-subnet
+>   * kube-vpc-az2-prod-private-subnet
+>   * kube-vpc-az2-prod-public-subnet
+> * 클러스터 엔드포인트 엑세스 - 퍼블릭 및 프라이빗
+> <img width="551" alt="스크린샷 2023-02-27 오후 6 32 25" src="https://user-images.githubusercontent.com/73451727/221526881-eb253785-3b74-402d-aae1-e49da56763f0.png">
+> <img width="552" alt="스크린샷 2023-02-27 오후 6 33 12" src="https://user-images.githubusercontent.com/73451727/221526895-1e663162-a990-487b-b9f2-e3869838cacb.png">
 
 
 
