@@ -1,7 +1,20 @@
 ```
 # 자주쓰는 명령어
 
+- kubectl endpoint 변경
+- local minikube -> aws kube-cluster
+- 설정파일 위치: /Users/jyhong/.kube/config 
+- AWS CLI 이용해서 aws kube-cluster 로 엔드포인트 변경
+- cat ~/.aws/credentials
+- aws configure -> login / region 설정
+aws eks --region ap-northeast-1 update-kubeconfig --name kube-cluster
+Added new context arn:aws:eks:ap-northeast-1:744721539376:cluster/kube-cluster to /Users/jyhong/.kube/config
 
+kubectl get pods
++ vscode extension에서도 클러스터 엔드포인트 스위칭 편하게 가능
++ eks version과 kubectl version 호환이 안될경우 kubectl downgrade 필요함
++ brew uninstall kubectl
++ brew search kubectl@
 
 
 ```
@@ -93,6 +106,9 @@
 
 > ### 5) 검토 및 생성
 
+## 3. EKS 에 노드 추가
+> ##### (=쿠버네티스 소프트웨어가 설치된 리모트 머신 추가)
+> 
 
 
 
