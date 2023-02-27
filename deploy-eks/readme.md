@@ -49,20 +49,28 @@ AWS EKS를 사용하면, 쿠버네티스의 구문, 철학 및 접근 방식을 
 ### 3. ROUTING TABLE
 * ##### 1) IGW 생성: kube-IGW - 위에 생성해놓은 VPC에 연결
 * ##### 2) NGW 생성 
-   * az1-kube-NGW - !!!public subnet 연결!!! dev-kube-vpc-public-subnet 
-   * az2-kube-NGW - !!!public subnet 연결!!! prod-kube-vpc-public-subnet 
+   * az1-kube-NGW - !!!public subnet 연결!!! - kube-vpc-az1-prod-public-subnet
+   * az2-kube-NGW - !!!public subnet 연결!!! - kube-vpc-az2-prod-public-subnet
    * NGW란, private subnet 외부에서 내부로의 접근은 차단, 내부에서 외부의 접근은 허용
-   * 예를 들어 MySQL를 설치파일을 다운로드하는 것이 가능해진다.
+   * 예를 들어 써드파티 패키지들을 다운로드하는 것이 가능해진다.
+
+
 * ##### 3) ROUTING TABLE 생성
-   * dev-kube-vpc-private-subnet-route 생성 
-      * 서브넷연결: dev-kube-vpc-private-subnet
-      * 라우팅추가: 0.0.0.0/0 - dev-NGW
-   * prod-kube-vpc-private-subnet-route 생성 
-      * 서브넷연결: prod-kube-vpc-private-subnet
-      * 라우팅추가: 0.0.0.0/0 - prod-NGW
-   * kube-vpc-public-subnet-route 생성 
-      * 서브넷연결: dev-kube-vpc-public-subnet / prod-kube-vpc-public-subnet
+   * kube-vpc-public-subnet-route 생성
+      * 서브넷연결
+         * kube-vpc-az1-dev-public-subnet 
+         * kube-vpc-az1-prod-public-subnet 
+         * kube-vpc-az2-prod-public-subnet
       * 라우팅추가: 0.0.0.0/0 - IGW
+   * kube-vpc-az1-private-subnet-route
+      * 서브넷연결
+         * kube-vpc-az1-prod-private-subnet
+         * kube-vpc-az1-dev-private-subnet
+      * 라우팅추가: 0.0.0.0/0 - az1-kube-NGW
+   * kube-vpc-az2-private-subnet-route
+      * 서브넷연결
+         * kube-vpc-az2-prod-private-subnet
+      * 라우팅추가: 0.0.0.0/0 - az2-kube-NGW  
 
 <img width="728" alt="스크린샷 2023-02-26 오전 11 26 45" src="https://user-images.githubusercontent.com/73451727/221390910-d4173d78-fdf4-4d6a-adf8-74ad5376707a.png">
 <img width="734" alt="스크린샷 2023-02-26 오후 12 11 34" src="https://user-images.githubusercontent.com/73451727/221390915-297dca8b-bb1b-4748-80fc-d3ad8b7f6206.png">
