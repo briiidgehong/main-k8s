@@ -37,16 +37,20 @@ AWS EKS를 사용하면, 쿠버네티스의 구문, 철학 및 접근 방식을 
 * network: 192.168 host 0.0 - 2의 16제곱 = 약 65536 개의 호스트 IP 설정 가능
 
 ### 2. SUBNET
-* dev-kube-vpc-private-subnet: 192.168.10.0/24 - 네트워크 비트가 24개 - host = 8bit - 2의 8제곱 약 256개의 호스트 IP 설정 가능
-* dev-kube-vpc-public-subnet: 192.168.11.0/24 
-* prod-kube-vpc-private-subnet: 192.168.20.0/24
-* prod-kube-vpc-public-subnet: 192.168.21.0/24
+* 네트워크 비트가 24개 - host = 8bit - 2의 8제곱 약 256개의 호스트 IP 설정 가능
+* kube-vpc-az1-dev-private-subnet: 192.168.10.0/24
+* kube-vpc-az1-dev-public-subnet: 192.168.11.0/24
+
+* kube-vpc-az1-prod-private-subnet: 192.168.20.0/24
+* kube-vpc-az1-prod-public-subnet: 192.168.21.0/24
+* kube-vpc-az2-prod-private-subnet: 192.168.22.0/24
+* kube-vpc-az2-prod-public-subnet: 192.168.23.0/24
 
 ### 3. ROUTING TABLE
 * ##### 1) IGW 생성: kube-IGW - 위에 생성해놓은 VPC에 연결
 * ##### 2) NGW 생성 
-   * dev-kube-NGW - !!!public subnet 연결!!! dev-kube-vpc-public-subnet 
-   * prod-kube-NGW - !!!public subnet 연결!!! prod-kube-vpc-public-subnet 
+   * az1-kube-NGW - !!!public subnet 연결!!! dev-kube-vpc-public-subnet 
+   * az2-kube-NGW - !!!public subnet 연결!!! prod-kube-vpc-public-subnet 
    * NGW란, private subnet 외부에서 내부로의 접근은 차단, 내부에서 외부의 접근은 허용
    * 예를 들어 MySQL를 설치파일을 다운로드하는 것이 가능해진다.
 * ##### 3) ROUTING TABLE 생성
