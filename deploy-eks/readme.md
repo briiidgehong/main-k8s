@@ -81,8 +81,17 @@
 >   * 노드to노드 / pod to pod 간의 트레픽은 클러스터 내부에서 돌림
 > <img width="551" alt="스크린샷 2023-02-27 오후 6 32 25" src="https://user-images.githubusercontent.com/73451727/221526881-eb253785-3b74-402d-aae1-e49da56763f0.png">
 > <img width="552" alt="스크린샷 2023-02-27 오후 6 33 12" src="https://user-images.githubusercontent.com/73451727/221526895-1e663162-a990-487b-b9f2-e3869838cacb.png">
+<br/>
 
+> ### 3) 로깅 구성
+> <img width="349" alt="스크린샷 2023-02-27 오후 6 40 19" src="https://user-images.githubusercontent.com/73451727/221528461-c3a9617f-9f6c-45ca-9400-963dffef1ad3.png">
+<br/>
 
+> ### 4) 추가기능 구성
+> <img width="579" alt="스크린샷 2023-02-27 오후 6 41 53" src="https://user-images.githubusercontent.com/73451727/221528917-b964e4ea-790d-47a1-aad3-920e789cf5c0.png">
+<br/>
+
+> ### 5) 검토 및 생성
 
 
 
