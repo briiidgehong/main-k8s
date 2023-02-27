@@ -40,6 +40,7 @@ AWS EKS를 사용하면, 쿠버네티스의 구문, 철학 및 접근 방식을 
 * 네트워크 비트가 24개 - host = 8bit - 2의 8제곱 약 256개의 호스트 IP 설정 가능
 * kube-vpc-az1-dev-private-subnet: 192.168.10.0/24
 * kube-vpc-az1-dev-public-subnet: 192.168.11.0/24
+<br/>
 
 * kube-vpc-az1-prod-private-subnet: 192.168.20.0/24
 * kube-vpc-az1-prod-public-subnet: 192.168.21.0/24
@@ -53,8 +54,6 @@ AWS EKS를 사용하면, 쿠버네티스의 구문, 철학 및 접근 방식을 
    * az2-kube-NGW - !!!public subnet 연결!!! - kube-vpc-az2-prod-public-subnet
    * NGW란, private subnet 외부에서 내부로의 접근은 차단, 내부에서 외부의 접근은 허용
    * 예를 들어 써드파티 패키지들을 다운로드하는 것이 가능해진다.
-
-
 * ##### 3) ROUTING TABLE 생성
    * kube-vpc-public-subnet-route 생성
       * 서브넷연결
@@ -72,10 +71,9 @@ AWS EKS를 사용하면, 쿠버네티스의 구문, 철학 및 접근 방식을 
          * kube-vpc-az2-prod-private-subnet
       * 라우팅추가: 0.0.0.0/0 - az2-kube-NGW  
 
-<img width="728" alt="스크린샷 2023-02-26 오전 11 26 45" src="https://user-images.githubusercontent.com/73451727/221390910-d4173d78-fdf4-4d6a-adf8-74ad5376707a.png">
-<img width="734" alt="스크린샷 2023-02-26 오후 12 11 34" src="https://user-images.githubusercontent.com/73451727/221390915-297dca8b-bb1b-4748-80fc-d3ad8b7f6206.png">
-<img width="906" alt="스크린샷 2023-02-26 오후 12 11 18" src="https://user-images.githubusercontent.com/73451727/221390922-b4d21f3b-c4ed-4d6b-9a0d-4f2cecda6988.png">
-<img width="1098" alt="스크린샷 2023-02-26 오후 12 36 11" src="https://user-images.githubusercontent.com/73451727/221390957-50d2e1d3-8ff1-4bc5-a79f-a803402485dd.png">
+<img width="649" alt="스크린샷 2023-02-26 오전 11 26 39" src="https://user-images.githubusercontent.com/73451727/221511500-45055b96-0134-4b59-b1d7-435295984e67.png">
+<img width="1472" alt="스크린샷 2023-02-27 오후 5 31 25" src="https://user-images.githubusercontent.com/73451727/221519187-f07b6fd3-555c-470a-aa13-81ef5840ddf4.png">
+<img width="1158" alt="스크린샷 2023-02-27 오후 6 00 13" src="https://user-images.githubusercontent.com/73451727/221519207-9430bc1c-d65d-47d5-a4ae-99ba7cca9a25.png">
 
 
 
