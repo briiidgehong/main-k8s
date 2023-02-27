@@ -50,7 +50,8 @@
 > <img width="1472" alt="스크린샷 2023-02-27 오후 5 31 25" src="https://user-images.githubusercontent.com/73451727/221519187-f07b6fd3-555c-470a-aa13-81ef5840ddf4.png">
 > <img width="1158" alt="스크린샷 2023-02-27 오후 6 00 13" src="https://user-images.githubusercontent.com/73451727/221519207-9430bc1c-d65d-47d5-a4ae-99ba7cca9a25.png">
 
-## 2.
+## 2. EKS SETTING
+
 
 
 
