@@ -1,6 +1,7 @@
 ```
 # 자주쓰는 명령어
 
+
 - kubectl endpoint 변경
 - local minikube -> aws kube-cluster
 - 설정파일 위치: /Users/jyhong/.kube/config 
@@ -14,6 +15,9 @@ kubectl get pods
 + vscode extension에서도 클러스터 엔드포인트 스위칭 편하게 가능
 + eks version과 kubectl version 호환이 안될경우 kubectl downgrade 필요함
 
+# helm chart
+brew install helm
+helm repo list
 
 
 ```
