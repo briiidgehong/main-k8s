@@ -138,7 +138,12 @@ helm repo list
 > ##### 1) kubectl endpoint aws eks-cluster로 변경
 > ```
 > aws eks --region ap-northeast-1 update-kubeconfig --name kube-cluster
-> 
+> kubectl apply -f=auth.yaml -f=users.yaml
+> get deployments
+> kubectl get pods
+> kubectl get services
+
+
 > ```
 > 
 
