@@ -129,6 +129,7 @@ helm repo list
 <img width="659" alt="스크린샷 2023-03-01 오전 11 11 33" src="https://user-images.githubusercontent.com/73451727/222027658-2d92e211-f681-4902-bdcc-229faa3eaf89.png">
 <img width="657" alt="스크린샷 2023-03-01 오전 11 13 07" src="https://user-images.githubusercontent.com/73451727/222027680-0344e40e-06f3-4172-97c2-97d4d663488d.png">
 <img width="1254" alt="스크린샷 2023-03-01 오전 11 16 17" src="https://user-images.githubusercontent.com/73451727/222027973-9c93a479-414a-4953-aa0d-006b3697cd3e.png">
+
 > ```
 > # kubectl endpoint aws eks-cluster로 변경
 > aws eks --region ap-northeast-1 update-kubeconfig --name kube-cluster
@@ -136,13 +137,11 @@ helm repo list
 > # apply 전 확인사항! 
 > # image pull 경로 확인 -> bridgehong/k8s-test-auth:latest / bridgehong/k8s-test-users:latest
 > # cloud mongodb setting 및 url 확인 
-> - name: MONGODB_CONNECTION_URI / value: "mongodb+srv://admin:1111@cluster0.zhhhmvg.mongodb.net/?retryWrites=true&w=majority"
+> name: MONGODB_CONNECTION_URI / value: "mongodb+srv://admin:####(password)@cluster0.zhhhmvg.mongodb.net/?retryWrites=true&w=majority"
 > kubectl apply -f=./kubernetes/auth.yaml -f=./kubernetes/users.yaml
 > kubectl get deployments
 > kubectl get pods
 > kubectl get services
-
-
 > ```
 > 
 
