@@ -119,11 +119,16 @@ helm repo list
 >         * AmazonEKS_CNI_Policy 추가
 >         * AmazonEC2ContainerRegistryReadOnly 추가
 > * computing 유형 t3.small 이상 선택
+> * 선택하려는 subnet 설정에 'enable auto-assign public IPv4 address' 활성화 되어있어야함
+> * az1-prod-public-subnet / az2-prod-public-subnet
+> * EC2 생성 확인 !
 > <img width="642" alt="스크린샷 2023-02-27 오후 8 24 02" src="https://user-images.githubusercontent.com/73451727/221551662-cd4a0e4c-1fe8-408b-84fc-65bd19f72b64.png">
 > <img width="586" alt="스크린샷 2023-02-27 오후 8 22 24" src="https://user-images.githubusercontent.com/73451727/221551685-40a5778f-ff6a-4daa-b8ac-a76a741b410f.png">
 > <img width="646" alt="스크린샷 2023-02-27 오후 8 27 43" src="https://user-images.githubusercontent.com/73451727/221552357-bcd3e1d9-0e71-4488-bb0d-9539a97fa69f.png">
 > <img width="644" alt="스크린샷 2023-02-27 오후 8 28 02" src="https://user-images.githubusercontent.com/73451727/221552374-905f6a37-aee6-46c1-8dec-0ac67d26a033.png">
-
+<img width="659" alt="스크린샷 2023-03-01 오전 11 11 33" src="https://user-images.githubusercontent.com/73451727/222027658-2d92e211-f681-4902-bdcc-229faa3eaf89.png">
+<img width="657" alt="스크린샷 2023-03-01 오전 11 13 07" src="https://user-images.githubusercontent.com/73451727/222027680-0344e40e-06f3-4172-97c2-97d4d663488d.png">
+<img width="1254" alt="스크린샷 2023-03-01 오전 11 16 17" src="https://user-images.githubusercontent.com/73451727/222027973-9c93a479-414a-4953-aa0d-006b3697cd3e.png">
 
 
 
@@ -133,6 +138,7 @@ helm repo list
 > ##### 1) kubectl endpoint aws eks-cluster로 변경
 > ```
 > aws eks --region ap-northeast-1 update-kubeconfig --name kube-cluster
+> 
 > ```
 > 
 
