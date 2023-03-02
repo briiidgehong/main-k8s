@@ -134,6 +134,7 @@ helm repo list
 <img width="1254" alt="스크린샷 2023-03-01 오전 11 16 17" src="https://user-images.githubusercontent.com/73451727/222027973-9c93a479-414a-4953-aa0d-006b3697cd3e.png">
 
 > ```
+> kub-deploy-01-starting-setup 소스 참조
 > # kubectl endpoint aws eks-cluster로 변경
 > aws eks --region ap-northeast-1 update-kubeconfig --name kube-cluster
 > 
@@ -157,6 +158,9 @@ helm repo list
 > auth-service    ClusterIP      10.100.45.71   <none>                                                                         3000/TCP       35h
 > kubernetes      ClusterIP      10.100.0.1     <none>                                                                         443/TCP        3d4h
 > users-service   LoadBalancer   10.100.83.6    a99c45a16e30d403ca3754ba77531b44-1709747800.ap-northeast-1.elb.amazonaws.com   80:32331/TCP   35h
+> 
+> + EFS 볼륨 설정 소스:
+>
 > ```
 
 
