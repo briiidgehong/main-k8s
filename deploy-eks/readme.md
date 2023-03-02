@@ -134,7 +134,7 @@ helm repo list
 <img width="1254" alt="스크린샷 2023-03-01 오전 11 16 17" src="https://user-images.githubusercontent.com/73451727/222027973-9c93a479-414a-4953-aa0d-006b3697cd3e.png">
 
 > ```
-> kub-deploy-01-starting-setup 소스 참조
+> # kub-deploy-01-starting-setup 소스 참조
 > # kubectl endpoint aws eks-cluster로 변경
 > aws eks --region ap-northeast-1 update-kubeconfig --name kube-cluster
 > 
