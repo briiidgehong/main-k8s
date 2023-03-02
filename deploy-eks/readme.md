@@ -11,7 +11,10 @@
 aws eks --region ap-northeast-1 update-kubeconfig --name kube-cluster
 Added new context arn:aws:eks:ap-northeast-1:744721539376:cluster/kube-cluster to /Users/jyhong/.kube/config
 
+kubectl get deployment
 kubectl get pods
+kubectl get services
+
 + vscode extension에서도 클러스터 엔드포인트 스위칭 편하게 가능
 + eks version과 kubectl version 호환이 안될경우 kubectl downgrade 필요함
 
@@ -139,11 +142,24 @@ helm repo list
 > # cloud mongodb setting 및 url 확인 
 > name: MONGODB_CONNECTION_URI / value: "mongodb+srv://admin:####(password)@cluster0.zhhhmvg.mongodb.net/?retryWrites=true&w=majority"
 > kubectl apply -f=./kubernetes/auth.yaml -f=./kubernetes/users.yaml
-> kubectl get deployments
-> kubectl get pods
-> kubectl get services
-> ```
 > 
+> kubectl get deployments
+> NAME               READY   UP-TO-DATE   AVAILABLE   AGE
+> auth-deployment    1/1     1            1           33h
+> users-deployment   1/1     1            1           33h
+> 
+> kubectl get pods
+> NAME                                READY   STATUS    RESTARTS   AGE
+> auth-deployment-857866978b-mch6h    1/1     Running   0          33h
+> users-deployment-7d74b59556-qjw2r   1/1     Running   0          33h
+> kubectl get services
+> NAME            TYPE           CLUSTER-IP     EXTERNAL-IP                                                                    PORT(S)        AGE
+> auth-service    ClusterIP      10.100.45.71   <none>                                                                         3000/TCP       35h
+> kubernetes      ClusterIP      10.100.0.1     <none>                                                                         443/TCP        3d4h
+> users-service   LoadBalancer   10.100.83.6    a99c45a16e30d403ca3754ba77531b44-1709747800.ap-northeast-1.elb.amazonaws.com   80:32331/TCP   35h
+> ```
+
+
 
 
 
