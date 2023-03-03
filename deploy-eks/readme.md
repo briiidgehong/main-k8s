@@ -137,6 +137,8 @@ helm repo list
 > # kub-deploy-01-starting-setup 소스 참조
 > # kubectl endpoint aws eks-cluster로 변경
 > aws eks --region ap-northeast-1 update-kubeconfig --name kube-cluster
+> # kubeconfig test
+> kubectl get svc -> 클러스터 인증필요 (IAM) -> 생성자인 경우 / 생성자가 아닌경우
 > 
 > # apply 전 확인사항! 
 > # image pull 경로 확인 -> bridgehong/k8s-test-auth:latest / bridgehong/k8s-test-users:latest
