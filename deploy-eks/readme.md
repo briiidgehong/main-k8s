@@ -162,8 +162,8 @@ helm repo list
 > kubernetes      ClusterIP      10.100.0.1     <none>                                                                         443/TCP        3d4h
 > users-service   LoadBalancer   10.100.83.6    a99c45a16e30d403ca3754ba77531b44-1709747800.ap-northeast-1.elb.amazonaws.com   80:32331/TCP   35h
 > 
-> + EFS 볼륨 설정: kub-deploy-06-finished 참조
->
+> + EFS 볼륨 설정: kub-deploy-06-finished 
+> + container logging: brew install k9s
 > ```
 
 
