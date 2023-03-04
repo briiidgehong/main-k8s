@@ -139,6 +139,7 @@ helm repo list
 > aws eks --region ap-northeast-1 update-kubeconfig --name kube-cluster
 > # kubeconfig test
 > kubectl get svc -> 클러스터 인증필요 (IAM) -> 생성자인 경우 / 생성자가 아닌경우
+> (https://docs.aws.amazon.com/ko_kr/eks/latest/userguide/create-kubeconfig.html)
 > 
 > # apply 전 확인사항! 
 > # image pull 경로 확인 -> bridgehong/k8s-test-auth:latest / bridgehong/k8s-test-users:latest
