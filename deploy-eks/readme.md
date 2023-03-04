@@ -164,6 +164,7 @@ helm repo list
 > 
 > + EFS 볼륨 설정: kub-deploy-06-finished 
 > + container logging: brew install k9s
+>
 > ```
 
 
